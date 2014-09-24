@@ -17,10 +17,6 @@ public class User {
 
     private String name;
 
-    public User(String name) {
-        this.name = name;
-    }
-
     public static MongoCollection users(){
         return PlayJongo.getCollection("users");
     }

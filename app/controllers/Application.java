@@ -1,21 +1,26 @@
 package controllers;
 
 import models.User;
-import org.jongo.MongoCollection;
-import play.*;
-import play.mvc.*;
 import play.data.Form;
-import play.data.validation.Constraints;
+import play.mvc.Controller;
+import play.mvc.Result;
+import views.html.index;
 
-import views.html.*;
+import static play.data.Form.*;
 
 public class Application extends Controller {
 
+    final static Form<User> registerForm = form(User.class);
+
     public static Result index() {
-        MongoCollection users = User.users();
-        User user = new User("James");
-        user.insert();
-        return ok(index.render("Your new application is ready."));
+        return ok(
+            index.render(registerForm)
+        );
+    }
+
+    public static Result register() {
+        Form<User> userForm = form(User.class).bindFromRequest();
+        return ok();
     }
 
 }
