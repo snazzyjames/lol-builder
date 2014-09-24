@@ -15,6 +15,7 @@ public class User {
 
     @JsonProperty("_id")
     private ObjectId id;
+    private String email;
     private String summonerName;
     private String passwordHash;
 
@@ -22,7 +23,8 @@ public class User {
         return PlayJongo.getCollection("users");
     }
 
-    public User insert(String summonerName, String passwordHash){
+    public User insert(String email, String summonerName, String passwordHash){
+        this.email = email;
         this.summonerName = summonerName;
         this.passwordHash = passwordHash;
         users().save(this);
@@ -45,6 +47,14 @@ public class User {
 
     public static String generatePasswordHash(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSummonerName() {

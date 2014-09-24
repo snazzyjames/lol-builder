@@ -13,26 +13,32 @@ import static play.data.Form.*;
 
 public class Application extends Controller {
 
-    final static Form<User> registerForm = form(User.class);
+    final static Form<User> UserForm = form(User.class);
 
     public static Result index() {
         return ok(
-            index.render(registerForm)
+            index.render(UserForm)
         );
     }
 
     public static Result register() {
         String email;
+        String summonerName;
         String passwordHash;
 
         DynamicForm userForm = form().bindFromRequest();
 
         email = userForm.get("email");
+        summonerName = userForm.get("summoner-name");
         passwordHash = User.generatePasswordHash(userForm.get("password"));
 
         User newUser = new User();
-        newUser.insert(email,passwordHash);
+        newUser.insert(email,summonerName,passwordHash);
 
+        return ok();
+    }
+
+    public static Result login(){
         return ok();
     }
 
