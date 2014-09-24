@@ -35,7 +35,7 @@ public class Application extends Controller {
         User newUser = new User();
         newUser.insert(email,summonerName,passwordHash);
 
-        return ok();
+        return redirect("/user/home");
     }
 
     public static Result login(){

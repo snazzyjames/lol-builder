@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-4 col-md-offset-4">
                         <div class="account-wall">
-                            <form class="form-signin" method="post" id="register-form">
+                            <form class="form-signin" method="post" action="/register" id="register-form">
                             @helper.form(action = routes.Application.register()) {
                                 <div class="form-group">
                                     <input class="form-control" type="email" name="email" placeholder="Email" value="@form("email").value">
@@ -50,7 +50,7 @@
                             }
                             </form>
 
-                            <form class="form-signin" method="post" id="login-form">
+                            <form class="form-signin" method="post" action="/login" id="login-form">
                             @helper.form(action = routes.Application.login()) {
                                 <div class="form-group">
                                     <input class="form-control" type="email" name="email" placeholder="Email" value="@form("email").value">
